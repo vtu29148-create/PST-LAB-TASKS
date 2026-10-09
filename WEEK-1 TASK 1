@@ -1,0 +1,39 @@
+
+interface PerformOperation {
+    boolean check(int a);
+}
+
+class MyMath {
+
+    public PerformOperation isOdd() {
+        return a -> a % 2 != 0;
+    }
+
+    public PerformOperation isPrime() {
+        return a -> {
+            if (a < 2) return false;
+
+            for (int i = 2; i <= a / i; i++) {
+                if (a % i == 0) return false;
+            }
+
+            return true;
+        };
+    }
+
+    public PerformOperation isPalindrome() {
+        return a -> {
+            if (a < 0) return false;
+
+            int original = a;
+            int reversed = 0;
+
+            while (a > 0) {
+                reversed = reversed * 10 + a % 10;
+                a /= 10;
+            }
+
+            return original == reversed;
+        };
+    }
+}
